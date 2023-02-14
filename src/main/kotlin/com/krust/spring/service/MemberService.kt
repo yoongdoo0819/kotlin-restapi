@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class MemberService {
@@ -20,9 +21,10 @@ class MemberService {
         jpaRepository!!.save(member)
     }
 
-    fun findMember(id: String): Optional<Member> {
+    fun findMember(id: String): Member? {
 
         log.info("findMember")
+
         return jpaRepository!!.findById(id)
     }
 }
