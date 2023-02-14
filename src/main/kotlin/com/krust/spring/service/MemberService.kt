@@ -4,6 +4,7 @@ import com.krust.spring.domain.Member
 import com.krust.spring.repository.JPARepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.Optional
 
 @Service
 class MemberService {
@@ -14,7 +15,13 @@ class MemberService {
     fun join(member: Member) {
         //println("id : " + member.id)
         //println("password : " + member.password)
-        println("jpaRepository >>> $jpaRepository")
+        println("join >>> $jpaRepository")
         jpaRepository!!.save(member)
+    }
+
+    fun findMember(id: String): Optional<Member> {
+
+        println("findMember >>> $jpaRepository")
+        return jpaRepository!!.findById(id)
     }
 }
