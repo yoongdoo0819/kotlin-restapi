@@ -27,7 +27,6 @@ class JPARepository {
 
     fun save(member: Member): Member {
         em!!.persist(member)
-
         return member
     }
 
@@ -36,6 +35,7 @@ class JPARepository {
         val findMember = em!!.find(member.javaClass, member.id)
         return Optional.ofNullable(findMember)
     }
+
 
 }
 
