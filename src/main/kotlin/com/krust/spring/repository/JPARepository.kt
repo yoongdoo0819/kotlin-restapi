@@ -2,6 +2,7 @@ package com.krust.spring.repository
 
 import com.krust.spring.domain.Board
 import com.krust.spring.domain.Member
+import com.krust.spring.dto.MemberBoardDTO
 import jakarta.persistence.EntityManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
@@ -43,5 +44,9 @@ class JPARepository {
         return em!!.find(board.javaClass, board.idx)
     }
 
+    fun storeMemberBoard(memberBoardDTO: MemberBoardDTO): MemberBoardDTO {
+        em!!.persist(memberBoardDTO)
+        return memberBoardDTO
+    }
 }
 

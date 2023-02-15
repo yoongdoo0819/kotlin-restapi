@@ -59,8 +59,8 @@ class MemberController {
         log.info("id = {}", member.id)
         log.info("password = {}", member.password)
 
-        val findMember = memberService!!.findMember(member.id)
-        if (findMember != null) {
+        val foundMember = memberService!!.findMember(member.id)
+        if (foundMember != null) {
             httpServletResponse.status = HttpServletResponse.SC_BAD_REQUEST
             return null
         }

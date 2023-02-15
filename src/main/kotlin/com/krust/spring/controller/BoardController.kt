@@ -1,6 +1,7 @@
 package com.krust.spring.controller
 
 import com.krust.spring.domain.Board
+import com.krust.spring.dto.MemberBoardDTO
 import com.krust.spring.service.BoardService
 import com.krust.spring.service.MemberService
 import jakarta.servlet.http.HttpServletResponse
@@ -36,7 +37,11 @@ class BoardController {
         log.info("title {}", board.title)
         log.info("content {}", board.content)
 
-        boardService!!.store(board)
+        val savedBoard = boardService!!.create(board)
+        val memberBoardDTO = MemberBoardDTO(id, savedBoard.idx!!)
+
+        log.info("idx {}", savedBoard.idx)
+        boardService!!.createMemberBoard(memberBoardDTO)
         return true
     }
 }
