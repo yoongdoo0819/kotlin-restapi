@@ -4,6 +4,7 @@ import com.krust.spring.domain.Board
 import com.krust.spring.domain.Member
 import com.krust.spring.dto.MemberBoardDTO
 import jakarta.persistence.EntityManager
+import jakarta.persistence.TypedQuery
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
@@ -48,5 +49,12 @@ class JPARepository {
         em!!.persist(memberBoardDTO)
         return memberBoardDTO
     }
+
+    fun getAllBoardList(): List<Board> {
+        val jpql = "select b from Board b";
+        val query = em!!.createQuery(jpql, Board().javaClass)
+        return query.resultList;
+    }
+
 }
 

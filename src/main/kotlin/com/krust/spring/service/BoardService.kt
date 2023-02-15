@@ -31,4 +31,11 @@ class BoardService {
         log.info("createMemberBoard")
         jpaRepository!!.storeMemberBoard(memberBoardDTO)
     }
+
+    fun findAllBoardList(): List<Board>? {
+
+        log.info("findAllBoardList")
+        return jpaRepository!!.getAllBoardList()
+    }
+
 }
