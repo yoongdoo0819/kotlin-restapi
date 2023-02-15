@@ -32,6 +32,12 @@ class BoardService {
         jpaRepository!!.storeMemberBoard(memberBoardDTO)
     }
 
+    fun findMyBoardList(id: String): List<Board>? {
+
+        log.info("findMyBoardList")
+        return jpaRepository!!.getMyBoardList(id)
+    }
+
     fun findAllBoardList(): List<Board>? {
 
         log.info("findAllBoardList")

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -36,6 +37,21 @@ class BoardController {
         log.info("idx {}", savedBoard.idx)
         boardService!!.createMemberBoard(memberBoardDTO)
         return true
+    }
+
+    @GetMapping("/board/myList/{id}")
+    fun getMyBoardList(@PathVariable id: String): List<Board>? {
+        log.info("getMyBoardList {}", id)
+
+        val boards = boardService!!.findMyBoardList(id)
+
+        if (boards != null) {
+            for (i in boards) {
+                log.info("{} boards {} {}", i.idx, i.title, i.content)
+            }
+        }
+
+        return boards
     }
 
     @GetMapping("/board/allList")
