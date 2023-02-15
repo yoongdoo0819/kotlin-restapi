@@ -16,7 +16,7 @@ import kotlin.jvm.optionals.getOrNull
 class MemberController {
 
     @Autowired
-    private final var memberService : MemberService ? = null
+    private final var memberService : MemberService? = null
     private val log = LoggerFactory.getLogger(javaClass)
 
     @GetMapping("/")

@@ -1,5 +1,6 @@
 package com.krust.spring.service
 
+import com.krust.spring.domain.Board
 import com.krust.spring.domain.Member
 import com.krust.spring.repository.JPARepository
 import org.slf4j.LoggerFactory
@@ -9,21 +10,21 @@ import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
 
 @Service
-class MemberService {
+class BoardService {
 
     @Autowired
     private final var jpaRepository : JPARepository? = null
     private val log = LoggerFactory.getLogger(javaClass)
 
-    fun join(member: Member) {
+    fun store(board: Board) {
 
-        log.info("join")
-        jpaRepository!!.save(member)
+        log.info("store")
+        jpaRepository!!.store(board)
     }
 
-    fun findMember(id: String): Member? {
+    fun findBoard(idx: Long): Board? {
 
-        log.info("findMember")
-        return jpaRepository!!.findById(id)
+        log.info("findBoard")
+        return jpaRepository!!.findBoardByIdx(idx)
     }
 }

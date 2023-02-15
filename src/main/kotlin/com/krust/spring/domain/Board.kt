@@ -15,6 +15,10 @@ class Board {
     init {
     }
 
+    constructor(){
+
+    }
+
     constructor(title: String, content: String) {
         this.title = title
         this.content = content
