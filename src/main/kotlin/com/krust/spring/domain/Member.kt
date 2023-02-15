@@ -10,9 +10,9 @@ import jakarta.persistence.Id
 class Member {
 
     @Id @Column(name = "id")
-    var id: String? = null
+    var id: String = ""
     @Column(name = "password")
-    var password: String? = null
+    var password: String = ""
 
     init {
     }

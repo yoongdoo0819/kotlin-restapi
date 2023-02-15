@@ -38,13 +38,13 @@ class MemberController {
     }
 
     @PostMapping("/member/login")
-    fun loginMember(@RequestParam id: String, @RequestParam password: String, httpServletResponse: HttpServletResponse): Boolean {
+    fun loginMember(@ModelAttribute member: Member, httpServletResponse: HttpServletResponse): Boolean {
         log.info("loginMember")
 
-        val findMember = memberService!!.findMember(id)
+        val findMember = memberService!!.findMember(member.id)
         if (findMember != null &&
-                id.equals(findMember?.id) &&
-                password.equals(findMember?.password)) {
+                member.id.equals(findMember?.id) &&
+                member.password.equals(findMember?.password)) {
 
             return true
         }
@@ -54,19 +54,18 @@ class MemberController {
     }
 
     @PostMapping("/member/new")
-    fun createMember(@RequestParam id: String, @RequestParam password: String, httpServletResponse: HttpServletResponse): Member? {
+    fun createMember(@ModelAttribute member: Member, httpServletResponse: HttpServletResponse): Member? {
         log.info("createMember")
-        log.info("id = {}", id)
-        log.info("password = {}", password)
+        log.info("id = {}", member.id)
+        log.info("password = {}", member.password)
 
-        val findMember = memberService!!.findMember(id)
+        val findMember = memberService!!.findMember(member.id)
         if (findMember != null) {
             httpServletResponse.status = HttpServletResponse.SC_BAD_REQUEST
             return null
         }
 
         log.info("create")
-        val member = Member(id, password)
         memberService!!.join(member)
         return member
     }
