@@ -68,4 +68,16 @@ class BoardController {
 
         return boards
     }
+
+    @PostMapping("/board/update")
+    fun updateBoard(@RequestParam id: String, @ModelAttribute board: Board, httpServletResponse: HttpServletResponse): Boolean {
+        log.info("storeBoard")
+        log.info("id {}", id)
+        log.info("idx {}", board.idx)
+        log.info("title {}", board.title)
+        log.info("content {}", board.content)
+
+        val updatedBoard = boardService!!.update(board)
+        return true
+    }
 }

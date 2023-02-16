@@ -30,7 +30,7 @@ class JPARepository {
     }
 
     fun findById(id: String): Member? {
-        var member: Member = Member(id, "")
+        var member = Member(id, "")
         return em!!.find(member.javaClass, member.id)
     }
 
@@ -61,6 +61,14 @@ class JPARepository {
         val jpql = "select b from Board b";
         val query = em!!.createQuery(jpql, Board().javaClass)
         return query.resultList;
+    }
+
+    fun update(updateBoard: Board): Board {
+
+        val findBoard = em!!.find(updateBoard.javaClass, updateBoard.idx)
+        findBoard.title = updateBoard.title
+        findBoard.content = updateBoard.content
+        return findBoard
     }
 
 }

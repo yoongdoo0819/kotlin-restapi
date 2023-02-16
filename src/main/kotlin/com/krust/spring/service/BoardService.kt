@@ -44,4 +44,10 @@ class BoardService {
         return jpaRepository!!.getAllBoardList()
     }
 
+    fun update(updateBoard: Board): Board {
+
+        log.info("update")
+        return jpaRepository!!.update(updateBoard)
+    }
+
 }
