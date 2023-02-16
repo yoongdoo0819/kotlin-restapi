@@ -4,7 +4,6 @@ import com.krust.spring.domain.Board
 import com.krust.spring.domain.Member
 import com.krust.spring.dto.MemberBoardDTO
 import jakarta.persistence.EntityManager
-import jakarta.persistence.TypedQuery
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
@@ -71,5 +70,20 @@ class JPARepository {
         return findBoard
     }
 
+    fun delete(memberBoardDTO: MemberBoardDTO): Boolean {
+
+        val memberBoardJpql = "delete from memberBoard mb where mb.id = :id and mb.idx = :idx";
+        em!!.createQuery(memberBoardJpql)
+                .setParameter("id", memberBoardDTO.id)
+                .setParameter("idx", memberBoardDTO.idx)
+                .executeUpdate()
+
+        val boardJpql = "DELETE from Board b WHERE b.idx = :idx";
+        val boardQuery = em!!.createQuery(boardJpql)//, Board().javaClass)
+        boardQuery.setParameter("idx", memberBoardDTO.idx)
+        val rowsDelete = boardQuery.executeUpdate()
+
+        return true
+    }
 }
 

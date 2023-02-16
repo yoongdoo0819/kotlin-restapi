@@ -50,4 +50,9 @@ class BoardService {
         return jpaRepository!!.update(updateBoard)
     }
 
+    fun delete(memberBoardDTO: MemberBoardDTO): Boolean {
+
+        log.info("delete")
+        return jpaRepository!!.delete(memberBoardDTO)
+    }
 }

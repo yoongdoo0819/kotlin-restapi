@@ -71,13 +71,23 @@ class BoardController {
 
     @PostMapping("/board/update")
     fun updateBoard(@RequestParam id: String, @ModelAttribute board: Board, httpServletResponse: HttpServletResponse): Boolean {
-        log.info("storeBoard")
+        log.info("updateBoard")
         log.info("id {}", id)
         log.info("idx {}", board.idx)
         log.info("title {}", board.title)
         log.info("content {}", board.content)
 
         val updatedBoard = boardService!!.update(board)
+        return true
+    }
+
+    @PostMapping("/board/delete")
+    fun deleteBoard(@ModelAttribute memberBoardDTO: MemberBoardDTO): Boolean {
+        log.info("deleteBoard")
+        log.info("id {}", memberBoardDTO.id)
+        log.info("idx {}", memberBoardDTO.idx)
+
+        boardService!!.delete(memberBoardDTO)
         return true
     }
 }
