@@ -51,7 +51,7 @@ class JPARepository {
     }
 
     fun getMyBoardList(id: String): List<Board> {
-        val jpql = "select b from Board b INNER JOIN memberBoard mb WHERE mb.id = :id";
+        val jpql = "select b from Board b INNER JOIN memberBoard mb on b.idx=mb.idx WHERE mb.id = :id";
         return em!!.createQuery(jpql, Board().javaClass)
                 .setParameter("id", id)
                 .resultList
